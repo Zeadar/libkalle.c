@@ -1,9 +1,8 @@
 #pragma once
 
 #include "libkalle.h"
+#include "platform.h"
 
-//4096: assumed page size
-#define STEPSIZE 4096
 #define PADSIZE sizeof(size_t)
 
 static size_t padsize(size_t bytesize) {

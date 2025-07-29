@@ -1,9 +1,7 @@
 #pragma once
 
 #include "libkalle.h"
-
-//4096: assumed page size
-#define STEPSIZE 4096
+#include "platform.h"
 
 Slice slice_create(size_t width) {
     size_t init_size = STEPSIZE + (width / STEPSIZE) * STEPSIZE;

@@ -3,10 +3,10 @@
 #include "libkalle.h"
 #define GROWSIZE 512
 
-static u64 fnv1a(const char *str) {
-    u64 hash = 14695981039346656037UL;
+static uint64_t fnv1a(const char *str) {
+    uint64_t hash = 14695981039346656037UL;
     while (*str) {
-        hash ^= (u8) * str++;
+        hash ^= (uint8_t) * str++;
         hash *= 1099511628211UL;
     }
     return hash;
@@ -16,7 +16,7 @@ static void hashy_rehash(Map *map) {
     memset(map->map, ~0, map->size * sizeof(slice_index));
 
     for (slice_index i = 0; i != map->used; ++i) {
-        u64 hash_index = fnv1a(sarray_get(&map->keys, i)) % map->size;
+        uint64_t hash_index = fnv1a(sarray_get(&map->keys, i)) % map->size;
 
         while (map->map[hash_index] != -1)
             hash_index = (hash_index + 1) % map->size;
@@ -64,7 +64,7 @@ void hashy_destroy(Map *map) {
 }
 
 void *hashy_get(const Map *map, const char *key) {
-    u64 hash_index = fnv1a(key) % map->size;
+    uint64_t hash_index = fnv1a(key) % map->size;
     char *current_key;
 
     while (map->map[hash_index] != -1) {
@@ -81,7 +81,7 @@ void *hashy_get(const Map *map, const char *key) {
 void hashy_set(Map *map, const char *key, const void *data) {
     hashy_check_grow(map);
 
-    u64 hash_index = fnv1a(key) % map->size;
+    uint64_t hash_index = fnv1a(key) % map->size;
 
     while (map->map[hash_index] != -1) {
         if (strcmp(key, sarray_get(&map->keys, map->map[hash_index])) == 0) {
@@ -99,7 +99,7 @@ void hashy_set(Map *map, const char *key, const void *data) {
 }
 
 void hashy_remove(Map *map, const char *key) {
-    u64 hash_index = fnv1a(key) % (map->size - 1);
+    uint64_t hash_index = fnv1a(key) % (map->size - 1);
 
     while (map->map[hash_index] != -1) {
         if (strcmp(key, sarray_get(&map->keys, map->map[hash_index])) == 0) {

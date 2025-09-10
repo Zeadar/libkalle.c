@@ -1,16 +1,16 @@
 #pragma once
 
-#include "types.h"
 #include <stddef.h>
 #include <stdlib.h>
+#include <stdint.h>
 #include <string.h>
 
 // Slice
 typedef ptrdiff_t slice_index;
 typedef struct {
-    u8 *begin;
-    u8 *head;
-    u8 *end;
+    uint8_t *begin;
+    uint8_t *head;
+    uint8_t *end;
     size_t width;
 } Slice;
 
@@ -22,7 +22,7 @@ typedef struct {
 
 Slice slice_create(size_t width);
 void slice_destroy(Slice *slice);
-s8 slice_ptr_in_bounds(const Slice *slice, void *ptr);
+int slice_ptr_in_bounds(const Slice *slice, void *ptr);
 slice_index slice_find(const Slice *slice, void *ptr);
 void *slice_get_ptr(const Slice *slice, slice_index index);
 void *slice_allocate(Slice *slice);
@@ -40,7 +40,6 @@ typedef struct {
     size_t end;
     Slice table;
 } Sarray;
-typedef size_t str_index;
 
 Sarray sarray_create();
 void sarray_destroy(Sarray *sarray);

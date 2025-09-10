@@ -1,6 +1,6 @@
 CC = gcc
-CFLAGS = -Wextra -Wall -g -O0 -fPIC 
 LDFLAGS = -shared
+CFLAGS = -fPIC
 
 SRCS = slice.c sarray.c hashy.c
 OBJS = $(addprefix $(OBJDIR)/, $(SRCS:.c=.o))
@@ -8,10 +8,17 @@ OBJS = $(addprefix $(OBJDIR)/, $(SRCS:.c=.o))
 OBJDIR = build
 TARGET = $(OBJDIR)/libkalle.so
 
-all: $(OBJDIR) $(TARGET)
+all: debug
+
+debug: CFLAGS += -Wextra -Wall -g -O0
+debug: $(OBJDIR) $(TARGET)
+
+release: CFLAGS += -O3 -march=native
+release: $(OBJDIR) $(TARGET)
+	strip $(TARGET)
 
 clean:
-	rm -fr $(OBJDIR)
+	rm -frv $(OBJDIR)
 
 $(TARGET): $(OBJS)
 	$(CC) $(LDFLAGS) -o $@ $(OBJS)
@@ -20,5 +27,5 @@ $(OBJDIR)/%.o: %.c | $(OBJDIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJDIR):
-	mkdir -p $(OBJDIR)
+	mkdir -pv $(OBJDIR)
 

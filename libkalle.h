@@ -15,7 +15,7 @@ typedef struct {
 
 #define slice_new(data_t) slice_create(sizeof(data_t))
 #define slice_get(data_t, slice, index) (*(data_t *)slice_get_ptr(slice, index))
-#define slice_size(slice) (((slice)->head - (slice)->begin) / (slice)->width)
+#define slice_size(slice) (slice_index)(((slice)->head - (slice)->begin) / (slice)->width)
 #define slice_get_index(slice, ptr) ((ptr - (slice)->begin) / (slice)->width)
 
 Slice slice_create(size_t width);

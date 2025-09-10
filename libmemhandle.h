@@ -45,6 +45,7 @@ char *sarray_get(const Sarray *sarray, slice_index index);
 slice_index sarray_size(const Sarray *sarray);
 slice_index sarray_push(Sarray *sarray, const char *str);
 void sarray_remove(Sarray *sarray, slice_index index);
+void sarray_foreach(const Sarray *sarray, void (*fn)(char *));
 
 // Hashy
 typedef struct {

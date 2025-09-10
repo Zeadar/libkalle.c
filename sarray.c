@@ -1,7 +1,7 @@
 #include <stddef.h>
 #include <stdlib.h>
 #include <stdint.h>
-#include "libkalle.h"
+#include "libmemhandle.h"
 #include "platform.h"
 
 #define PADSIZE sizeof(size_t)

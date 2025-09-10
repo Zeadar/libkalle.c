@@ -6,7 +6,7 @@ SRCS = slice.c sarray.c hashy.c
 OBJS = $(addprefix $(OBJDIR)/, $(SRCS:.c=.o))
 
 OBJDIR = build
-TARGET = $(OBJDIR)/libkalle.so
+TARGET = $(OBJDIR)/libmemhandle.so
 
 all: debug
 

@@ -81,9 +81,7 @@ void sarray_remove(Sarray *sarray, slice_index index) {
 }
 
 void sarray_foreach(const Sarray *sarray, void (*fn)(char *)) {
-    size_t sarray_index;
     for (slice_index si = 0; si != slice_size(&sarray->table); ++si) {
-        sarray_index = slice_get(size_t, &sarray->table, si);
-        fn(sarray_get(sarray, sarray_index));
+        fn(sarray_get(sarray, si));
     }
 }

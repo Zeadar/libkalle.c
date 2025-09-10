@@ -1,7 +1,6 @@
 #pragma once
 
 #include <stddef.h>
-#include <stdlib.h>
 #include <stdint.h>
 #include <string.h>
 
@@ -17,7 +16,6 @@ typedef struct {
 #define slice_new(data_t) slice_create(sizeof(data_t))
 #define slice_get(data_t, slice, index) (*(data_t *)slice_get_ptr(slice, index))
 #define slice_size(slice) (((slice)->head - (slice)->begin) / (slice)->width)
-#define slice_room(slice) (((slice)->end - (slice)->begin) / (slice)->width)
 #define slice_get_index(slice, ptr) ((ptr - (slice)->begin) / (slice)->width)
 
 Slice slice_create(size_t width);
@@ -66,3 +64,4 @@ void hashy_set(Map *map, const char *key, const void *data);
 void hashy_remove(Map *map, const char *key);
 void hashy_foreach(const Map *map, void (fn) (char *key, void *value));
 void hashy_foreach_value(const Map *map, void (fn) (void *value));
+// TODO: foreach_key

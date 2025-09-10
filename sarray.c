@@ -1,9 +1,10 @@
 #pragma once
 
+#include <stddef.h>
+#include <stdlib.h>
+#include <stdint.h>
 #include "libkalle.h"
 #include "platform.h"
-#include <stddef.h>
-#include <stdint.h>
 
 #define PADSIZE sizeof(size_t)
 

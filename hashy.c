@@ -1,5 +1,6 @@
 #pragma once
 
+#include <stdlib.h>
 #include "libkalle.h"
 #define GROWSIZE 512
 

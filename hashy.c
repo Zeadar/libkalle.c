@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <string.h>
 #include "libmemhandle.h"
 #define GROWSIZE 512
 
@@ -131,7 +132,7 @@ void hashy_foreach_value(const Map *map, void (fn) (void *value)) {
 }
 
 void hashy_foreach_key(const Map *map, void (*fn)(char *key)) {
-    for(slice_index i = 0; i != map->used; ++i) {
+    for (slice_index i = 0; i != map->used; ++i) {
         fn(sarray_get(&map->keys, i));
     }
 }

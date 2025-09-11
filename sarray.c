@@ -1,6 +1,7 @@
 #include <stddef.h>
 #include <stdlib.h>
 #include <stdint.h>
+#include <string.h>
 #include "libmemhandle.h"
 #include "platform.h"
 
@@ -81,7 +82,7 @@ void sarray_remove(Sarray *sarray, slice_index index) {
 }
 
 void sarray_foreach(const Sarray *sarray, void (*fn)(char *)) {
-    for (slice_index si = 0; si != slice_size(&sarray->table); ++si) {
+    for(slice_index si = 0; si != slice_size(&sarray->table); ++si) {
         fn(sarray_get(sarray, si));
     }
 }

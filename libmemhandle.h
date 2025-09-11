@@ -2,7 +2,6 @@
 
 #include <stddef.h>
 #include <stdint.h>
-#include <string.h>
 
 // Slice
 typedef ptrdiff_t slice_index;
@@ -66,3 +65,21 @@ void hashy_remove(Map *map, const char *key);
 void hashy_foreach(const Map *map, void (fn) (char *key, void *value));
 void hashy_foreach_value(const Map *map, void (fn) (void *value));
 void hashy_foreach_key(const Map *map, void (fn) (char *key));
+
+//StrSet
+typedef struct branch {
+    struct branch *left;
+    struct branch *right;
+    char *str;
+} Branch;
+
+typedef struct {
+    Sarray strings;
+    Slice branches;
+    Branch *root;
+} StrSet;
+
+StrSet strset_create();
+void strset_destroy(StrSet *strset);
+void strset_set(StrSet *strset, const char *str);
+// TODO: unset(), contains()

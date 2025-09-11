@@ -2,7 +2,7 @@ CC = cc
 LDFLAGS = -shared
 CFLAGS = -fPIC
 
-SRCS = slice.c sarray.c hashy.c
+SRCS = slice.c sarray.c hashy.c strset.c
 OBJS = $(addprefix $(OBJDIR)/, $(SRCS:.c=.o))
 
 OBJDIR = build

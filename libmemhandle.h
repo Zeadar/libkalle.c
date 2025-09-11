@@ -65,4 +65,4 @@ void hashy_set(Map *map, const char *key, const void *data);
 void hashy_remove(Map *map, const char *key);
 void hashy_foreach(const Map *map, void (fn) (char *key, void *value));
 void hashy_foreach_value(const Map *map, void (fn) (void *value));
-// TODO: foreach_key
+void hashy_foreach_key(const Map *map, void (fn) (char *key));

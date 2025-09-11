@@ -129,3 +129,9 @@ void hashy_foreach_value(const Map *map, void (fn) (void *value)) {
         fn(slice_get_ptr(&map->value_data, i));
     }
 }
+
+void hashy_foreach_key(const Map *map, void (*fn)(char *key)) {
+    for(slice_index i = 0; i != map->used; ++i) {
+        fn(sarray_get(&map->keys, i));
+    }
+}

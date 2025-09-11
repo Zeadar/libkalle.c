@@ -10,12 +10,12 @@ typedef struct {
     uint8_t *begin;
     uint8_t *head;
     uint8_t *end;
-    size_t width;
+    ptrdiff_t width;
 } Slice;
 
 #define slice_new(data_t) slice_create(sizeof(data_t))
 #define slice_get(data_t, slice, index) (*(data_t *)slice_get_ptr(slice, index))
-#define slice_size(slice) (slice_index)(((slice)->head - (slice)->begin) / (slice)->width)
+#define slice_size(slice) (((slice)->head - (slice)->begin) / (slice)->width)
 #define slice_get_index(slice, ptr) ((ptr - (slice)->begin) / (slice)->width)
 
 Slice slice_create(size_t width);
